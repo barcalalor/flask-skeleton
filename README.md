@@ -1,6 +1,5 @@
-# Camara-API
-
-Async API to handle data from Camara devices.
+# FLASK SKELETON
+Microservice Skeleton with Flask Framework and SQLAlchemy Djangorized
 
 ## Getting started
 
@@ -52,32 +51,3 @@ docker-compose -f test.yml -p ci run test python -m pytest --cov=web/ tests
 Commits tested via [travis-ci.org](https://travis-ci.org/brennv/flask-app). Test coverage reported to [codecov.io](https://codecov.io/gh/brennv/flask-app). Code quality reported via [codeclimate.com](https://codeclimate.com/github/brennv/flask-app). Requirements inspected with [requires.io](https://requires.io/github/brennv/flask-app/requirements).
 
 After testing, submit a pull request to merge changes with **develop**.
-
-## Automated builds and redeploys
-
-[Docker images](https://hub.docker.com/r/brenn/flask-app/tags/) are automatically built from changes to repo branches and tags via [docker hub autobuilds](https://docs.docker.com/docker-hub/github/).
-
-Using a cluster provisioned on [docker cloud](https://cloud.docker.com/), services are created as stacks from `stack/` to nodes tagged *infra* or *compute*. Setting stack option `autoredeploy: true` continuously redeploys new images built from recent commits.
-
-Image tagging and deployment scheme:
-
-- `camara-api:latest` follows the **master** branch and deploys to **production** at [http://camara-api.example.com](http://camara-api.beta.build)
-- `camara-api:develop` follows the **develop** branch and deploys to **staging** at [http://staging.camara-api.example.com](http://staging.camara-api.beta.build)
-
-*Note:* To create sites at subdomains using virtual hosts as shown in `stack/`, assumes domain records have been configured with:
-
-- `CNAME` record `*` to `example.com.`
-- `A` record `@` to the (floating) IP of the haproxy load balancer
-
-## Monitoring, log aggregation and scaling
-
-Agent containers by [sematext](https://github.com/sematext/sematext-agent-docker) deployed to each node. Alert thresholds trigger web hooks to scale services under load.
-
-## Notifications
-
-Updates and alerts pushed via Slack:
-
-- github
-- travis-ci
-- docker
-- sematext
