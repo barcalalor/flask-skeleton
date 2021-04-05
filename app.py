@@ -6,7 +6,7 @@ from api import views
 from database import db, migrate
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DB_URL', None)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DATABASE_URL', None)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', False)
 
 #SET UP DB
